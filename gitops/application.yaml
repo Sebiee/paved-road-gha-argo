@@ -1,0 +1,25 @@
+# Fork/rename: replace repoURL with your fork before apply.
+# Placeholder: https://github.com/Sebiee/paved-road-gha-argo
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: paved-road-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # TODO: fork/rename — change this to your repo URL
+    repoURL: https://github.com/Sebiee/paved-road-gha-argo
+    targetRevision: HEAD
+    # Use overlays/kind for local kind demo (image: paved-road-app:local).
+    # Use base for GHCR-backed deploys after CI has pushed.
+    path: gitops/overlays/kind
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: paved-road
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
