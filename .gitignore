@@ -1,0 +1,9 @@
+# binaries
+app/app
+*.exe
+# editor / OS
+.idea/
+.vscode/
+.DS_Store
+# local kind / helm leftovers
+*.tgz

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: paved-road-app
+  labels:
+    app: paved-road-app
+spec:
+  type: ClusterIP
+  selector:
+    app: paved-road-app
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
